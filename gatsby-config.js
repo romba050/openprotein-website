@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `OpenProtein`,
+    description: `OpenProtein is a new machine learning framework for modeling tertiary protein structure. Built on top of PyTorch, NGL Viewer and ProteinNet, it offers automatic differentiation, visualisation, built-in data sets and much more.`,
+    author: `@biolib`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
