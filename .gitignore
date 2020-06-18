@@ -1,0 +1,40 @@
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+dist
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+
+# gatsby files
+.cache/
+public
+
+# Mac files
+.DS_Store
+
+# Yarn
+yarn-error.log
+.pnp/
+.pnp.js
+# Yarn Integrity file
+.yarn-integrity
+
+# Idea files
+.idea
+
+# Credential files
+.npmrc
+.yarnrc
