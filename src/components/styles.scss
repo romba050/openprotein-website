@@ -41,7 +41,7 @@ $input-shadow: none;
 
 
 h1 {
-    // @extend .title;
+    @extend .title;
     @extend .is-1;
 }
 

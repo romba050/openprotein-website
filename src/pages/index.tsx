@@ -30,7 +30,7 @@ const IndexPage: React.FC<PageProps> = ({ data, path }) => (
     <div className="container">
     <Row>
         <Col>
-            <h1 className="title"> Open Protein </h1>
+            <h1> Open Protein </h1>
             {/* <p> text 1 </p> */}
         </Col>
         {/* <Col>
@@ -52,7 +52,7 @@ const IndexPage: React.FC<PageProps> = ({ data, path }) => (
 
     <section className="section">
         <div className="container">
-            <h1 className="title">Next Generation Protein Simulation</h1>
+            <h1 className="title is-primary">Next Generation Protein Simulation</h1>
             <h2 className="subtitle">
             <strong> OpenProtein </strong> is a new machine learning framework for <strong>modeling tertiary protein structure</strong>. Built on top of PyTorch, NGL Viewer and ProteinNet, it offers <strong>automatic differentiation, visualisation, built-in data sets</strong> and much more.
             </h2>
@@ -62,6 +62,8 @@ const IndexPage: React.FC<PageProps> = ({ data, path }) => (
             <a href="https://github.com/biolib/openprotein" className="button is-primary">
                 <p> OpenProtein on Github </p>
             </a>
+            <p></p>
+            <a className="button is-link"> OpenProtein on Github </a>
         {/* </div> */}
 
     </section>
