@@ -30,25 +30,43 @@ const IndexPage: React.FC<PageProps> = ({ data, path }) => (
     <div className="container">
     <Row>
         <Col>
-            <h1 className="title"> Open Protein 1</h1>
-            <p> text 1 </p>
+            <h1 className="title"> Open Protein </h1>
+            {/* <p> text 1 </p> */}
         </Col>
-        <Col>
+        {/* <Col>
             <h1 className="title"> Open Protein 2 </h1>
             <p> text 2 </p>
-        </Col>
+        </Col> */}
     </Row>
     </div>
+
+    {/* <div className="container">
+    <Row>
+        <Col>
+            <h1 className="title"> Open Protein 3</h1>
+            <p> text 3 </p>
+        </Col>
+    </Row>
+    </div> */}
     </section>
 
-    <div className="columns">
-        <div className="hero-body">
-            <div className="container">
-            <h1 className="title"> Open Protein </h1>
-            {/* <h1 className="title is-1 is-bold is-spaced"> Open Protein </h1> */}
-            {/* <h2 className="subtitle"> Text </h2> */}
-            </div>
+    <section className="section">
+        <div className="container">
+            <h1 className="title">Section</h1>
+            <h2 className="subtitle">
+            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+            </h2>
         </div>
+    </section>
+
+    <section className="section">
+    <Row>
+        {/* <div className="hero-body">
+            <div className="container">
+            <h1 className="title is-1 is-bold is-spaced"> Open Protein </h1>
+            <h2 className="subtitle"> Text </h2>
+            </div>
+        </div> */}
 
         {/* <figure className="image is-2721×1840"> */}
         <figure className="image is-2721×1840">
@@ -92,7 +110,9 @@ const IndexPage: React.FC<PageProps> = ({ data, path }) => (
         <p>Open Protein runs in any Python 3 environment with PyTorch installed. A GPU is recommended, but not required.</p>
         <h4>How do I contribute to OpenProtein?</h4>
         <p>Simply create a pull request in the project's Github repository at <Link to="https://github.com/OpenProtein/openprotein">https://github.com/OpenProtein/openprotein</Link></p>
-    </div>
+    </Row>
+    </section>
+
 
     {/* </Layout> */}
 

@@ -5,6 +5,9 @@ import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
+import "../components/styles.scss"
+
+
 type DataProps = {
     site: {
       buildTime: string
@@ -16,6 +19,7 @@ type DataProps = {
         <section className="hero">
 
         </section>
+        
         <h4> Subscribe to our mailing list </h4>
         <p> Please select all the ways you would like to hear from OpenProtein: </p>
         <p> email address </p>
