@@ -6,6 +6,10 @@ import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
+import { graphql } from "gatsby"
+import Img from "gatsby-image"
+
+
 
 // make Row alias for columns
 const Row: React.FC = (props) => (
@@ -24,7 +28,7 @@ const Col: React.FC = (props) => (
 
 const IndexPage: React.FC<PageProps> = ({ data, path }) => (
     <>
-    <SEO title="Using TypeScript" />
+   <SEO title="Using TypeScript" />
     <section className="hero is-primary">
     
     <div className="container">
@@ -50,6 +54,7 @@ const IndexPage: React.FC<PageProps> = ({ data, path }) => (
     </div> */}
     </section>
 
+
     <section className="section">
         <div className="container">
             <h1 className="title is-primary">Next Generation Protein Simulation</h1>
@@ -57,10 +62,14 @@ const IndexPage: React.FC<PageProps> = ({ data, path }) => (
             <strong> OpenProtein </strong> is a new machine learning framework for <strong>modeling tertiary protein structure</strong>. Built on top of PyTorch, NGL Viewer and ProteinNet, it offers <strong>automatic differentiation, visualisation, built-in data sets</strong> and much more.
             </h2>
         </div>
+
+        <a href="image.tsx" className="button is-primary">
+                <p> OpenProtein on Github </p>
+            </a>
             
         {/* <div className="card-footer-item"> */}
-            <a href="https://github.com/biolib/openprotein" className="button is-primary">
-                <p> OpenProtein on Github </p>
+            <a href="/image/" className="button is-primary">
+                <p> image </p>
             </a>
             <p></p>
             <a className="button is-link"> OpenProtein on Github </a>
@@ -70,6 +79,7 @@ const IndexPage: React.FC<PageProps> = ({ data, path }) => (
 
     <section className="section">
     <Row>
+        
         {/* <div className="hero-body">
             <div className="container">
             <h1 className="title is-1 is-bold is-spaced"> Open Protein </h1>
@@ -82,7 +92,33 @@ const IndexPage: React.FC<PageProps> = ({ data, path }) => (
             <figure className="image is-2721×1840">
                 <img src="src/images/examplemodelrun.png"></img>
             </figure>
+
+            ??????
+
+        {/* export default (props) => (
+        
+         <div>
+            <h1>Hello gatsby-image</h1>
+            <Img fluid={data.file.childImageSharp.fluid} />
+        </div>
+        )
+
+         export const query = graphql`
+        query {
+            file(relativePath: { eq: "/src/images/examplemodelrun.png" }) {
+            childImageSharp {
+                # Specify the image processing specifications right in the query.
+                # Makes it trivial to update as your page's design changes.
+                # fixed(width: 125, height: 125) {
+                fluid(maxWidth: 1000) {
+                ...GatsbyImageSharpFluid
+                }
+            }
+            }
+        }
+        ' */}
         </section>
+
 
         <section className="section">
             <div className="container">

@@ -1,3 +1,7 @@
+// import React from "react"
+// import { graphl } from "gatsby"
+// import Img from "gatsby-image"
+
 module.exports = {
   siteMetadata: {
     title: `OpenProtein`,
@@ -13,6 +17,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -32,3 +37,26 @@ module.exports = {
     // `gatsby-plugin-offline`,
     'gatsby-plugin-sass'],
 }
+
+// export default (props) => (
+//   <div>
+//     <h1>Hello gatsby-image</h1>
+//     {/* <Img fixed={data.file.childImageSharp.fixed} /> */}
+//     <Img fluid={data.file.childImageSharp.fluid} />
+//   </div>
+// )
+
+// export const query = graphql`
+//   query {
+//       file(relativePath: { eq: "/src/images/examplemodelrun.png" }) {
+//       childImageSharp {
+//         # Specify the image processing specifications right in the query.
+//         # Makes it trivial to update as your page's design changes.
+//         # fixed(width: 125, height: 125) {
+//         fluid(maxWidth: 1000) {
+//           ...GatsbyImageSharpFluid
+//         }
+//       }
+//     }
+//   }
+// `
