@@ -1,47 +1,40 @@
-import React from "react";
-import { StaticQuery, graphql } from "gatsby";
-import Layout from "../components/layout";
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import Layout from "../components/layout"
 
-import Img from "gatsby-image";
+import Img from "gatsby-image"
 // import ExampleImg from "../images/examplemodelrun.png"
+
 
 class Image extends React.Component {
   render() {
-    const data = this.props.data;
+    const data = this.props.data
 
-    console.log(this.props);
+    console.log(this.props)
 
     return (
       <Layout>
-        <Img fixed={data.file.childImageSharp.fixed} />
+        <Img fixed={data.file.childImageSharp.fixed}/>
       </Layout>
-    );
+    )
   }
 }
 
-export default Image;
 
-//export const pageQuery =
+export default Image
 
-export function pageQuery() {
-  <StaticQuery
-    query={graphql`
-      query {
-        file(relativePath: { eq: "examplemodelrun.png" }) {
-          childImageSharp {
-            # Specify a fixed image and fragment.
-            # The default width is 400 pixels
-            fixed {
-              ...GatsbyImageSharpFixed
-            }
+
+export const pageQuery = graphql`
+    query {
+      file(relativePath: { eq: "examplemodelrun.png" }) {
+        childImageSharp {
+          # Specify a fixed image and fragment.
+          # The default width is 400 pixels
+          fixed {
+            ...GatsbyImageSharpFixed
           }
         }
       }
-    `}
-    render={(data) => (
-      <header>
-        <h1>{data.site.siteMetadata.title}</h1>
-      </header>
-    )}
-  />;
-}
+    }
+  `
+
