@@ -25,7 +25,6 @@ const Col: React.FC = (props) => (
     </div>
 )
 
-
 const IndexPage: React.FC<PageProps> = ({ data, path }) => (
     <>
    <SEO title="Using TypeScript" />
