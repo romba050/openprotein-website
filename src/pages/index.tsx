@@ -1,22 +1,33 @@
 import React from "react";
-import { Link, PageProps } from "gatsby";
+import { Link, PageProps, graphql } from "gatsby";
 
 import Layout from "../components/layout";
 // import Layout from "../components/styles.scss"
 // import Image from "../components/image";
 import SEO from "../components/seo";
-
-import { graphql } from "gatsby";
 import Img from "gatsby-image";
+import { Row, Col } from "../components/utils";
+
+
+// const -> immutable (but arrays can still be popped/extended, just not overwritten)
+// let -> mutable
 
 // import ReactDOM from 'react-dom';
 
-// make Row alias for columns
-const Row: React.FC = (props) => (
-  <div className="columns">{props.children}</div>
+interface IWelcomeProps {
+  name: string;
+}
+
+const Welcome: React.FC<IWelcomeProps> = (props) => (
+  <h1>Hello, {props.name}</h1>
 );
-// make Col alias for column
-const Col: React.FC = (props) => <div className="column">{props.children}</div>;
+
+// // identical to above syntax?
+// function Welcome<IWelcomeProps>(props){
+//   return (
+//     <h1>Hello, {props.name}</h1>
+//   )
+// }
 
 // const IndexPage: React.FC<PageProps> = ({ data, path }) => (
 class IndexPage extends React.Component {
@@ -24,6 +35,10 @@ class IndexPage extends React.Component {
     const data = this.props.data;
     return (
       <>
+        {["name 1", "name 2", "asd"].map((name) => (
+          <Welcome name={name} />
+        ))}
+        <Welcome name="Basile" />
         <SEO title="Using TypeScript" />
         <section className="hero is-primary">
           <div className="container">
@@ -55,6 +70,9 @@ class IndexPage extends React.Component {
               <Col>
                 <h1 className="title">Next Generation Protein Simulation</h1>
               </Col>
+            </Row>
+
+            <Row>
               <Col>
                 <h2 className="subtitle">
                   <strong> OpenProtein </strong> is a new machine learning
@@ -69,18 +87,20 @@ class IndexPage extends React.Component {
               </Col>
               <Col>This is additional text.</Col>
               <Col>
-              <a href="https://github.com/OpenProtein/openprotein" className="button is-link"> OpenProtein on Github </a> 
+                <a
+                  href="https://github.com/OpenProtein/openprotein"
+                  className="button is-link"
+                >
+                  {" "}
+                  OpenProtein on Github{" "}
+                </a>
               </Col>
             </Row>
-            <Row>
-              This is additional text.
-            </Row>
 
+            <Row>This is additional text.</Row>
           </div>
 
           {/* <a href="https://github.com/OpenProtein/openprotein" className="button is-primary"> OpenProtein on Github</a> */}
-
-
         </section>
 
         <section className="section">
