@@ -10,6 +10,7 @@ class Image extends React.Component {
   render() {
     const data = this.props.data
 
+    // debugging
     console.log(this.props)
 
     return (
@@ -38,3 +39,4 @@ export const pageQuery = graphql`
     }
   `
 
+// original dimensions: (width: 2721, height: 1840)
