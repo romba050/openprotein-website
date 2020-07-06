@@ -22,3 +22,25 @@ export function Col(props) {
 export default Utils;
 // export function Row;
 // export function Col;
+
+/////////// playground
+
+// const -> immutable (but arrays can still be popped/extended, just not overwritten)
+// let -> mutable
+
+// import ReactDOM from 'react-dom';
+
+interface IWelcomeProps {
+  name: string;
+}
+
+const Welcome: React.FC<IWelcomeProps> = (props) => (
+  <h1>Hello, {props.name}</h1>
+);
+
+// // identical to above syntax?
+// function Welcome<IWelcomeProps>(props){
+//   return (
+//     <h1>Hello, {props.name}</h1>
+//   )
+// }

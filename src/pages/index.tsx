@@ -8,37 +8,12 @@ import SEO from "../components/seo";
 import Img from "gatsby-image";
 import { Row, Col } from "../components/utils";
 
-
-// const -> immutable (but arrays can still be popped/extended, just not overwritten)
-// let -> mutable
-
-// import ReactDOM from 'react-dom';
-
-interface IWelcomeProps {
-  name: string;
-}
-
-const Welcome: React.FC<IWelcomeProps> = (props) => (
-  <h1>Hello, {props.name}</h1>
-);
-
-// // identical to above syntax?
-// function Welcome<IWelcomeProps>(props){
-//   return (
-//     <h1>Hello, {props.name}</h1>
-//   )
-// }
-
 // const IndexPage: React.FC<PageProps> = ({ data, path }) => (
 class IndexPage extends React.Component {
   render() {
     const data = this.props.data;
     return (
       <>
-        {["name 1", "name 2", "asd"].map((name) => (
-          <Welcome name={name} />
-        ))}
-        <Welcome name="Basile" />
         <SEO title="Using TypeScript" />
         <section className="hero is-primary">
           <div className="container">
@@ -84,33 +59,25 @@ class IndexPage extends React.Component {
                   </strong>{" "}
                   and much more.
                 </h2>
+              <a href="https://github.com/OpenProtein/openprotein"
+                className="button is-link">
+                OpenProtein on Github
+              </a>
               </Col>
-              <Col>This is additional text.</Col>
               <Col>
-                <a
-                  href="https://github.com/OpenProtein/openprotein"
-                  className="button is-link"
-                >
-                  {" "}
-                  OpenProtein on Github{" "}
-                </a>
+                <Img fixed={data.file.childImageSharp.fixed} />
               </Col>
             </Row>
+            <Row>
 
-            <Row>This is additional text.</Row>
+            </Row>
           </div>
 
           {/* <a href="https://github.com/OpenProtein/openprotein" className="button is-primary"> OpenProtein on Github</a> */}
         </section>
 
         <section className="section">
-          <Row>
-            {/* <figure className="image is-2721×1840"> */}
-            <section className="section">
-              {/* pass in data returned from the object to the query via the fluid/fixed prop */}
-              <Img fixed={data.file.childImageSharp.fixed} />
-            </section>
-
+          <Col>
             <section className="section">
               <div className="container">
                 <h1 className="title">Meet OpenProtein</h1>
@@ -126,7 +93,8 @@ class IndexPage extends React.Component {
                 </h2>
               </div>
             </section>
-
+          </Col>
+          <Col>
             <section className="section">
               <div className="container">
                 <h1 className="title">Fast Iteration</h1>
@@ -134,7 +102,8 @@ class IndexPage extends React.Component {
                 OpenProtein gives you feedback on your model changes in seconds.
               </div>
             </section>
-
+          </Col>
+          <Col>
             <section className="section">
               <div className="container">
                 <h1 className="title">GPU Compatible</h1>
@@ -143,7 +112,8 @@ class IndexPage extends React.Component {
                 efficiency.
               </div>
             </section>
-
+          </Col>
+          <Col>
             <section className="section">
               <div className="container">
                 <h1 className="title">Automatic Training</h1>
@@ -152,7 +122,9 @@ class IndexPage extends React.Component {
                 including training and validation.
               </div>
             </section>
-
+          </Col>
+          <Row>
+            <Col>
             <section className="section">
               <div className="container">
                 <h1 className="title">Stay in the know</h1>
@@ -160,8 +132,6 @@ class IndexPage extends React.Component {
                 OpenProtein is released
               </div>
             </section>
-
-            {/* <Link to="/early_access/"><button> Get early access </button></Link> */}
             <section className="section">
               <div className="card-footer-item">
                 <a href="/early_access/" className="button is-primary">
@@ -169,7 +139,13 @@ class IndexPage extends React.Component {
                 </a>
               </div>
             </section>
+            </Col>
+          </Row>
+          <Row>
+            {/* <Link to="/early_access/"><button> Get early access </button></Link> */}
 
+          </Row>
+          <Row>
             <section className="section">
               <div className="container">
                 <h3 className="title">Frequently Asked Questions</h3>
@@ -230,7 +206,7 @@ export const pageQuery = graphql`
       childImageSharp {
         # Specify a fixed image and fragment.
         # The default width is 400 pixels
-        fixed(width: 680, height: 460) {
+        fixed(width: 340, height: 230) {
           ...GatsbyImageSharpFixed
         }
       }
