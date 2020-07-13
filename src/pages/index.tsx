@@ -6,11 +6,56 @@ import Layout from "../components/layout";
 // import Image from "../components/image";
 import SEO from "../components/seo";
 import Img from "gatsby-image";
-import {Row, Col} from "../components/utils";
+import { Row, Col } from "../components/utils";
+
+// The React.Component is defined like so:
+// interface Component<P = {}, S = {}> extends ComponentLifecycle<P, S> { }
+// so we need to pass it alternative agruments to allow isOpen
+
+// headText : String, bodyText : String
+// class Accordion extends React.Component<{}, { isOpen : Boolean}> {
+
+interface IProps {
+    headText: string;
+    bodyText: string;
+ }
+ interface IState {
+   isOpen: boolean;
+ }
+
+class Accordion extends React.Component<IProps, IState> {
+  constructor(props) {
+    super(props);
+    // attribute? to access for opening accordion
+    this.state = {
+      isOpen: false
+    };
+  }
+
+  handleClick(){
+    this.setState({
+      isOpen: !this.state.isOpen
+      });
+  }
+  public render(){
+    return(
+      <article className={`accordion ${this.state.isOpen ? "is-active is-danger" : ""}`} onClick={()=>this.handleClick()}>
+      <div className="accordion-header toggle">
+        <p> {this.props.headText} </p>
+      </div>
+      <div className="accordion-body">
+        <div className="accordion-content">
+          {this.props.bodyText}
+        </div>
+      </div>
+    </article>
+    )
+  }
+}
 
 // const IndexPage: React.FC<PageProps> = ({ data, path }) => (
 class IndexPage extends React.Component {
-  render() {
+  public render() {
     const data = this.props.data;
     return (
       <>
@@ -59,18 +104,18 @@ class IndexPage extends React.Component {
                   </strong>{" "}
                   and much more.
                 </h2>
-              <a href="https://github.com/OpenProtein/openprotein"
-                className="button is-link">
-                OpenProtein on Github
-              </a>
+                <a
+                  href="https://github.com/OpenProtein/openprotein"
+                  className="button is-link"
+                >
+                  OpenProtein on Github
+                </a>
               </Col>
               <Col>
                 <Img fixed={data.file.childImageSharp.fixed} />
               </Col>
             </Row>
-            <Row>
-
-            </Row>
+            <Row></Row>
           </div>
 
           {/* <a href="https://github.com/OpenProtein/openprotein" className="button is-primary"> OpenProtein on Github</a> */}
@@ -125,87 +170,48 @@ class IndexPage extends React.Component {
           </Col>
           <Row>
             <Col>
-            <section className="section">
-              <div className="container">
-                <h1 className="title">Stay in the know</h1>
-                Join the mailing list and get notified when a new version of
-                OpenProtein is released
-              </div>
-            </section>
-            <section className="section">
-              <div className="card-footer-item">
-                <a href="/early_access/" className="button is-primary">
-                  <p> Get early access </p>
-                </a>
-              </div>
-            </section>
+              <section className="section">
+                <div className="container">
+                  <h1 className="title">Stay in the know</h1>
+                  Join the mailing list and get notified when a new version of
+                  OpenProtein is released
+                </div>
+              </section>
+              <section className="section">
+                <div className="card-footer-item">
+                  <a href="/early_access/" className="button is-primary">
+                    <p> Get early access </p>
+                  </a>
+                </div>
+              </section>
             </Col>
           </Row>
           <Row>
             {/* <Link to="/early_access/"><button> Get early access </button></Link> */}
-
           </Row>
           <Row>
             <section className="section">
-              <div className="container">
-                <h3 className="title">Frequently Asked Questions</h3>
-                <h4>Is this yet another structure prediction tool?</h4>
-                <p>
-                  Quite the opposite in fact - OpenProtein is a framework for
-                  creating, training and evaluating models for protein structure
-                  prediction. It can be used to improve existing models too!
-                </p>
-                <h4>What dependencies do I need to run OpenProtein?</h4>
-                <p>
-                  Open Protein runs in any Python 3 environment with PyTorch
-                  installed. A GPU is recommended, but not required.
-                </p>
-                <h4>How do I contribute to OpenProtein?</h4>
-                <p>
-                  Simply create a pull request in the project's Github
-                  repository at{" "}
-                  <Link to="https://github.com/OpenProtein/openprotein">
-                    https://github.com/OpenProtein/openprotein
-                  </Link>
-                </p>
-              </div>
             </section>
           </Row>
         </section>
-
+        
+        <h3 className="title">Frequently Asked Questions</h3>
         <section className="accordions">
-          <article className="accordion is-active">
-            <div className="accordion-header toggle">
-              <p>Hello World</p>
-            </div>
-            <div className="accordion-body">
-              <div className="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-              </div>
-            </div>
-          </article>
-          <article className="accordion">
-            <div className="accordion-header">
-              <p>Hello World</p>
-              <button className="toggle" aria-label="toggle"></button>
-            </div>
-            <div className="accordion-body">
-              <div className="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-              </div>
-            </div>
-          </article>
-          <article className="accordion">
-            <div className="accordion-header">
-              <p>Hello World</p>
-              <button className="toggle" aria-label="toggle"></button>
-            </div>
-            <div className="accordion-body">
-              <div className="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-              </div>
-            </div>
-          </article>
+          <Accordion headText="Is this yet another structure prediction tool?" bodyText="Quite the opposite in fact - OpenProtein is a framework for
+                  creating, training and evaluating models for protein structure
+                  prediction. It can be used to improve existing models too!"/>
+          {/* <article className={`accordion ${true ? "is-active is-danger" : ""}`}> */}
+          <Accordion headText="What dependencies do I need to run OpenProtein?"
+          bodyText="Open Protein runs in any Python 3 environment with PyTorch installed. A GPU is recommended, but not required."/>
+          <Accordion headText="How do I contribute to OpenProtein?"
+          bodyText="Simply create a pull request in the project's Github
+                  repository at https://github.com/OpenProtein/openprotein"/>
+          {/* bodyText="Simply create a pull request in the project's Github
+                   repository at{" "}
+                   <Link to='https://github.com/OpenProtein/openprotein'>
+                     https://github.com/OpenProtein/openprotein
+                   </Link>" /> */}
+
         </section>
 
         {/* </Layout> */}
