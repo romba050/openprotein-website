@@ -16,40 +16,43 @@ import { Row, Col } from "../components/utils";
 // class Accordion extends React.Component<{}, { isOpen : Boolean}> {
 
 interface IProps {
-    headText: string;
-    bodyText: string;
- }
- interface IState {
-   isOpen: boolean;
- }
+  headText: string;
+  bodyText: string;
+}
+interface IState {
+  isOpen: boolean;
+}
 
 class Accordion extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
     // attribute? to access for opening accordion
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
 
-  handleClick(){
+  handleClick() {
     this.setState({
-      isOpen: !this.state.isOpen
-      });
+      isOpen: !this.state.isOpen,
+    });
   }
-  public render(){
-    return(
-      <article className={`accordion ${this.state.isOpen ? "is-active is-danger" : ""}`} onClick={()=>this.handleClick()}>
-      <div className="accordion-header toggle">
-        <p> {this.props.headText} </p>
-      </div>
-      <div className="accordion-body">
-        <div className="accordion-content">
-          {this.props.bodyText}
+  public render() {
+    return (
+      <article
+        className={`accordion ${
+          this.state.isOpen ? "is-active " : ""
+        }`}
+        onClick={() => this.handleClick()}
+      >
+        <div className="accordion-header is-link">
+          <p> {this.props.headText} </p>
         </div>
-      </div>
-    </article>
-    )
+        <div className="accordion-body">
+          <div className="accordion-content">{this.props.bodyText}</div>
+        </div>
+      </article>
+    );
   }
 }
 
@@ -122,52 +125,42 @@ class IndexPage extends React.Component {
         </section>
 
         <section className="section">
-          <Col>
-            <section className="section">
-              <div className="container">
-                <h1 className="title">Meet OpenProtein</h1>
-                <h2 className="subtitle">
-                  We introduce a new machine learning framework, OpenProtein,
-                  for prediction of tertiary protein structure. The framework is
-                  based upon PyTorch and utilizes NGL Viewer for live
-                  visualization of the protein as it folds. OpenProtein parses
-                  the ProteinNet data set (derived from previous CASP
-                  competitions) directly using a memory efficient data loader
-                  and supports a wide range of features including built-in
-                  embedding, automatic differentiation and performance plotting.
-                </h2>
-              </div>
-            </section>
-          </Col>
-          <Col>
-            <section className="section">
-              <div className="container">
-                <h1 className="title">Fast Iteration</h1>
-                We know how important quick iteration speed is in research.
-                OpenProtein gives you feedback on your model changes in seconds.
-              </div>
-            </section>
-          </Col>
-          <Col>
-            <section className="section">
-              <div className="container">
-                <h1 className="title">GPU Compatible</h1>
-                All OpenProtein models are GPU compatible by default and the
-                framework's custom PyTorch data loaders are optimized for memory
-                efficiency.
-              </div>
-            </section>
-          </Col>
-          <Col>
-            <section className="section">
-              <div className="container">
-                <h1 className="title">Automatic Training</h1>
-                Simply focus on designing your model (in many cases less than 50
-                lines of code!) and the framework will handle the rest for you,
-                including training and validation.
-              </div>
-            </section>
-          </Col>
+          <div className="container">
+            <h1 className="title">Meet OpenProtein</h1>
+            <h2 className="subtitle">
+              We introduce a new machine learning framework, OpenProtein, for
+              prediction of tertiary protein structure. The framework is based
+              upon PyTorch and utilizes NGL Viewer for live visualization of the
+              protein as it folds. OpenProtein parses the ProteinNet data set
+              (derived from previous CASP competitions) directly using a memory
+              efficient data loader and supports a wide range of features
+              including built-in embedding, automatic differentiation and
+              performance plotting.
+            </h2>
+          </div>
+          <div className="container">
+            <h1 className="title">Fast Iteration</h1>
+            <h2 className="subtitle">
+              We know how important quick iteration speed is in research.
+              OpenProtein gives you feedback on your model changes in seconds.
+            </h2>
+          </div>
+          <section className="section">
+            <div className="container">
+              <h1 className="title">GPU Compatible</h1>
+              All OpenProtein models are GPU compatible by default and the
+              framework's custom PyTorch data loaders are optimized for memory
+              efficiency.
+            </div>
+          </section>
+          <section className="section">
+            <div className="container">
+              <h1 className="title">Automatic Training</h1>
+              Simply focus on designing your model (in many cases less than 50
+              lines of code!) and the framework will handle the rest for you,
+              including training and validation.
+            </div>
+          </section>
           <Row>
             <Col>
               <section className="section">
@@ -179,8 +172,12 @@ class IndexPage extends React.Component {
               </section>
               <section className="section">
                 <div className="card-footer-item">
-                  <a href="/early_access/" className="button is-primary">
-                    <p> Get early access </p>
+                  <a
+                    href="/early_access/"
+                    className="button is-primary is-large"
+                  >
+                    {" "}
+                    Get early access
                   </a>
                 </div>
               </section>
@@ -190,28 +187,41 @@ class IndexPage extends React.Component {
             {/* <Link to="/early_access/"><button> Get early access </button></Link> */}
           </Row>
           <Row>
-            <section className="section">
-            </section>
+            <section className="section"></section>
           </Row>
         </section>
-        
-        <h3 className="title">Frequently Asked Questions</h3>
-        <section className="accordions">
-          <Accordion headText="Is this yet another structure prediction tool?" bodyText="Quite the opposite in fact - OpenProtein is a framework for
+
+        <section>
+          <Row>
+            <Col>
+              <section className="section">
+                <h3 className="title">Frequently Asked Questions</h3>
+                <section className="accordions">
+                  <Accordion
+                    headText="Is this yet another structure prediction tool?"
+                    bodyText="Quite the opposite in fact - OpenProtein is a framework for
                   creating, training and evaluating models for protein structure
-                  prediction. It can be used to improve existing models too!"/>
-          {/* <article className={`accordion ${true ? "is-active is-danger" : ""}`}> */}
-          <Accordion headText="What dependencies do I need to run OpenProtein?"
-          bodyText="Open Protein runs in any Python 3 environment with PyTorch installed. A GPU is recommended, but not required."/>
-          <Accordion headText="How do I contribute to OpenProtein?"
-          bodyText="Simply create a pull request in the project's Github
-                  repository at https://github.com/OpenProtein/openprotein"/>
-          {/* bodyText="Simply create a pull request in the project's Github
+                  prediction. It can be used to improve existing models too!"
+                  />
+                  {/* <article className={`accordion ${true ? "is-active is-danger" : ""}`}> */}
+                  <Accordion
+                    headText="What dependencies do I need to run OpenProtein?"
+                    bodyText="Open Protein runs in any Python 3 environment with PyTorch installed. A GPU is recommended, but not required."
+                  />
+                  <Accordion
+                    headText="How do I contribute to OpenProtein?"
+                    bodyText="Simply create a pull request in the project's Github
+                  repository at https://github.com/OpenProtein/openprotein"
+                  />
+                  {/* bodyText="Simply create a pull request in the project's Github
                    repository at{" "}
                    <Link to='https://github.com/OpenProtein/openprotein'>
                      https://github.com/OpenProtein/openprotein
                    </Link>" /> */}
-
+                </section>
+              </section>
+            </Col>
+          </Row>
         </section>
 
         {/* </Layout> */}
