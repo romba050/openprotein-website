@@ -20,46 +20,54 @@ class EarlyAccess extends React.Component {
     return (
       <>
         <SEO title="Using TypeScript" />
-        <section className="hero is-primary">
-          <div className="container">
-            <Row>
-              <Col>
-                <h1> Open Protein </h1>
-              </Col>
-            </Row>
-          </div>
-        </section>
+        {/* this container centers the text */}
+        <div className="container">
+          <section className="hero is-primary">
+            <div className="container">
+              <Row>
+                <Col>
+                  <h1> Open Protein </h1>
+                </Col>
+              </Row>
+            </div>
+          </section>
 
-        <section className="hero">
-          <div className="container">
-            <Row>
-              <Col>
-                <h4 className="title"> Subscribe to our mailing list </h4>
-                <p> email address </p>
-                <input id="email" />
-                <p>
-                  {" "}
-                  Please select all the ways you would like to hear from
-                  OpenProtein:{" "}
-                </p>
-                <label className="checkbox">
-                  <input type="checkbox" />
-                    Email
-                </label>
-                <hr />
-                <p></p>
-                <h1 className="subtitle">Marketing Permissions</h1>
-                You can unsubscribe at any time by clicking the link in the
-                footer of our emails. For information about our privacy
-                practices, please visit our website.
-                <p></p>
-                <div className="card-footer-item">
+          <Row>
+            <Col>
+              <h4 className="title"> Subscribe to our mailing list </h4>
+              <p> email address </p>
+              <input id="email" />
+              <p>
+                {" "}
+                Please select all the ways you would like to hear from
+                OpenProtein:{" "}
+              </p>
+              <label className="checkbox">
+                <input type="checkbox" />
+                {/* &nbsp; (non-breaking space) forces a space */}
+                &nbsp; Email
+              </label>
+              {/* br = break = newline */}
+              <br />
+              <label className="checkbox">
+                <input type="checkbox" />
+                {/* &nbsp; forces a space */}
+                &nbsp; Discord
+              </label>
+              {/* horizontal line */}
+              <hr />
+              <p></p>
+              <h1 className="subtitle">Marketing Permissions</h1>
+              You can unsubscribe at any time by clicking the link in the footer
+              of our emails. For information about our privacy practices, please
+              visit our website.
+              <p></p>
+              <div className="card-footer-item">
                 <a className="button is-primary is-large"> Subscribe </a>
-                </div>
-              </Col>
-            </Row>
-          </div>
-        </section>
+              </div>
+            </Col>
+          </Row>
+        </div>
       </>
     );
   }

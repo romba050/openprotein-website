@@ -13,11 +13,19 @@ import React from "react";
 // had to rewrite as class methods not available for export
 // make Row alias for columns
 export function Row(props) {
-  return <div className="columns is-mobile">{props.children}</div>;
+  return (
+  <div className="columns is-mobile" {...props.name}>
+    {props.children}
+  </div>
+  );
 }
 // make Col alias for column
 export function Col(props) {
-  return <div className="column">{props.children}</div>;
+  return (
+  <div className="column " {...props.name}>
+    {props.children}
+  </div>
+  );
 }
 
 
