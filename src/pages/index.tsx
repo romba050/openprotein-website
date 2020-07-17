@@ -1,12 +1,14 @@
 import React from "react";
-import { Link, PageProps, graphql } from "gatsby";
+import { Link, PageProps, graphql, StaticQuery } from "gatsby";
 import Modal from "../components/modal";
 
 import Layout from "../components/layout";
 // import Layout from "../components/styles.scss"
 // import Image from "../components/image";
 import SEO from "../components/seo";
-import Img from "gatsby-image";
+// when importing the default export of a file, you can import it as any name you wish
+import GatsbyImage from "gatsby-image";
+// when importing non-defult exports, you must access them by their identifier
 import { Row, Col } from "../components/utils";
 
 // The React.Component is defined like so:
@@ -139,7 +141,7 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
                 </Col>
                 {/* "is-four-fifths" */}
                 <Col>
-                  <Img fixed={data.file.childImageSharp.fixed} />
+                  <GatsbyImage fixed={data.examplerun.file.childImageSharp.fixed} />
                 </Col>
               </Row>
               <Row></Row>
@@ -204,7 +206,10 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
                 {/* this centers the button */}
                 <div className="card-footer-item">
                   {/* use <Link/> instead of <a/> for internal sites, so gatsby can preload content */}
-                  <Link to="/modal/" className="button is-primary is-large">
+                  <Link
+                    to="/early_access/"
+                    className="button is-primary is-large"
+                  >
                     {" "}
                     Get early access
                   </Link>
@@ -229,17 +234,37 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
                     Get early access
                   </button>
 
-                  <a className="button is-primary" onClick={this.toggleModal}>
-                    Open Modal
+                  <a
+                    className="button is-primary is-large"
+                    onClick={this.toggleModal}
+                  >
+                    Get early access
                   </a>
 
                   <Modal
                     closeModal={this.toggleModal}
                     modalState={this.state.modalState}
-                    title="Subscribe to our mailing list"
+                    title="Let's stay connected!"
                   >
-                    <p> email address </p>
-                    <input id="email" />
+                    <div className="field">
+                      <label className="label">
+                        Subscribe to our mailing list{" "}
+                      </label>
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder="e.g. johndoe@gmail.com"
+                      />
+                    </div>
+                    <div className="field">
+                      <div className="control">
+                        <label className="checkbox">
+                          <input type="checkbox" />
+                          &nbsp;I agree to the{" "}
+                          <a href="#">terms and conditions</a>
+                        </label>
+                      </div>
+                    </div>
                     <p>
                       {" "}
                       Please select all the ways you would like to hear from
@@ -260,13 +285,37 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
                     {/* horizontal line */}
                     <hr />
                     <p></p>
-                    <h1 className="subtitle">Marketing Permissions</h1>
+                    <h5 className="subtitle">Marketing Permissions</h5>
                     You can unsubscribe at any time by clicking the link in the
                     footer of our emails. For information about our privacy
                     practices, please visit our website.
                     <p></p>
                     <div className="card-footer-item">
                       <a className="button is-primary is-large"> Subscribe </a>
+                    </div>
+                    <div className="content__gdprLegal">
+                      <a href="https://www.mailchimp.com/gdpr" target="_blank">
+                        {/* <img
+                          src="https://cdn-images.mailchimp.com/icons/mailchimp-gdpr.svg"
+                          alt="GDPR"
+                        /> */}
+                        <GatsbyImage fixed={data.gdpr.file.childImageSharp.fixed}
+                          alt="GDPR"/>
+                      </a>
+                      <p data-dojo-attach-point="gdprMcLegalContainer">
+                        <span>
+                          We use Mailchimp as our marketing platform. By
+                          clicking below to subscribe, you acknowledge that your
+                          information will be transferred to Mailchimp for
+                          processing.
+                          <a
+                            href="https://mailchimp.com/legal/"
+                            target="_blank"
+                          >
+                            &nbsp; Learn more about Mailchimp's privacy practices here.
+                          </a>
+                        </span>
+                      </p>
                     </div>
                   </Modal>
                 </div>
@@ -312,26 +361,48 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
           </section>
         </div>
         {/* </Layout> */}
+
+
+        <StaticQuery
+      query={graphql`
+         query {
+        examplerun: file(relativePath: { eq: "examplemodelrun.png" }) {
+          childImageSharp {
+            # Specify a fixed image and fragment.
+            # The default width is 400 pixels
+            fixed(width: 340, height: 230) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+        gdpr: file(relativePath: { eq: "https://cdn-images.mailchimp.com/icons/mailchimp-gdpr.svg" }) {
+          childImageSharp {
+            # Specify a fixed image and fragment.
+            # The default width is 400 pixels
+            fixed(width: 340, height: 230) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+      }`
+    }   
+    render={(data: any) => (
+      <p/>
+    )}
+    />
+
+
       </>
+
+
     );
   }
+
 }
 
-// class Image extends React.Component {
-//   render() {
-//     const data = this.props.data;
 
-//     console.log(this.props);
 
-//     return (
-//       <Layout>
-//         <Img fixed={data.file.childImageSharp.fixed} />
-//       </Layout>
-//     );
-//   }
-// }
 
-// <Link to="/page-2/">OpenProtein on Github</Link>
 
 class App extends React.Component<{}, { modalState: boolean }> {
   constructor(props) {
@@ -404,6 +475,8 @@ class App extends React.Component<{}, { modalState: boolean }> {
       </section>
     );
   }
+
+
 }
 
 // export default App;
@@ -412,19 +485,39 @@ export default IndexPage;
 // examplemodelrun.png original size
 //fixed(width: 2721, height: 1840)
 // (width: 680, height: 460)
-export const pageQuery = graphql`
-  query {
-    file(relativePath: { eq: "examplemodelrun.png" }) {
-      childImageSharp {
-        # Specify a fixed image and fragment.
-        # The default width is 400 pixels
-        fixed(width: 340, height: 230) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query {
+
+// class MyQuery extends React.Component<{}, { isSignedIn: boolean }>;
+
+// export IndexPage extends React.Component(props: { isSignedIn: boolean }) => (
+//   <StaticQuery
+//       query={graphql`
+//          query {
+//         examplerun: file(relativePath: { eq: "examplemodelrun.png" }) {
+//           childImageSharp {
+//             # Specify a fixed image and fragment.
+//             # The default width is 400 pixels
+//             fixed(width: 340, height: 230) {
+//               ...GatsbyImageSharpFixed
+//             }
+//           }
+//         }
+//         gdpr: file(relativePath: { eq: "https://cdn-images.mailchimp.com/icons/mailchimp-gdpr.svg" }) {
+//           childImageSharp {
+//             # Specify a fixed image and fragment.
+//             # The default width is 400 pixels
+//             fixed(width: 340, height: 230) {
+//               ...GatsbyImageSharpFixed
+//             }
+//           }
+//         }
+//       }`
+//     }   
+//     render={(data: any) => (
+//       <p/>
+//     )}
+// );
 
 // ReactDOM.render(
 //   document.getElementById('root')
