@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, PageProps, graphql, StaticQuery } from "gatsby";
 import Modal from "../components/modal";
+import ExampleModelRun from "./examplemodelrun";
+import GDPR from "./gdpr";
 
 import Layout from "../components/layout";
 // import Layout from "../components/styles.scss"
@@ -59,7 +61,10 @@ class Accordion extends React.Component<IProps, IState> {
 }
 
 // const IndexPage: React.FC<PageProps> = ({ data, path }) => (
-class IndexPage extends React.Component<{}, { modalState: boolean }> {
+class IndexPage extends React.Component<
+  { examplerun: any; gdpr: any },
+  { modalState: boolean }
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,7 +94,6 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
               <Row>
                 <Col>
                   <h1> Open Protein </h1>
-                  {/* <p> text 1 </p> */}
                 </Col>
                 {/* <Col>
           <h1 className="title"> Open Protein 2 </h1>
@@ -110,15 +114,7 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
 
           <section className="section">
             <div className="container">
-              <Row>
-                <Col child="has-text-centered">
-                  <h1 className="title">Next Generation Protein Simulation</h1>
-                </Col>
-                <Col>
-                  <h1 className="title"> Test </h1>
-                </Col>
-              </Row>
-
+              <h1 className="title">Next Generation Protein Simulation</h1>
               <Row>
                 <Col>
                   <h2 className="subtitle">
@@ -132,19 +128,31 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
                     </strong>{" "}
                     and much more.
                   </h2>
-                  <a
+                  {/* <a
                     href="https://github.com/OpenProtein/openprotein"
                     className="button is-link"
                   >
                     OpenProtein on Github
-                  </a>
+                  </a> */}
                 </Col>
                 {/* "is-four-fifths" */}
                 <Col>
-                  <GatsbyImage fixed={data.examplerun.file.childImageSharp.fixed} />
+                  <ExampleModelRun />
+                  {/* <GatsbyImage fixed={this.props.examplerun.childImageSharp.fixed} /> */}
                 </Col>
+                {/* this centers the button */}
               </Row>
-              <Row></Row>
+              <Row>
+              <div className="card-footer-item">
+                {/* use <Link/> instead of <a/> for internal sites, so gatsby can preload content */}
+                <a href="https://github.com/OpenProtein/openprotein">
+                  <button className="button is-link is-large modal-button">
+                    {" "}
+                    OpenProtein on GitHub
+                  </button>
+                </a>
+              </div>
+              </Row>
             </div>
 
             {/* <a href="https://github.com/OpenProtein/openprotein" className="button is-primary"> OpenProtein on Github</a> */}
@@ -220,7 +228,7 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
               <section className="section">
                 <div className="container">
                   <h1 className="title">Stay in the know</h1>
-                  Join the mailing list and get notified when a new version of
+                  Join the mailing list and get notiffied when a new version of
                   OpenProtein is released
                 </div>
               </section>
@@ -233,7 +241,6 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
                     {" "}
                     Get early access
                   </button>
-
                   <a
                     className="button is-primary is-large"
                     onClick={this.toggleModal}
@@ -290,32 +297,22 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
                     footer of our emails. For information about our privacy
                     practices, please visit our website.
                     <p></p>
+                    <Row>
+                      <Col name="is-10">
+                        <GDPR />
+                      </Col>
+                      <Col>
+                        We use Mailchimp as our marketing platform. By clicking
+                        below to subscribe, you acknowledge that your
+                        information will be transferred to Mailchimp for
+                        processing.{" "}
+                        <a href="https://mailchimp.com/legal/" target="_blank">
+                          Learn more about Mailchimp's privacy practices here.
+                        </a>
+                      </Col>
+                    </Row>
                     <div className="card-footer-item">
                       <a className="button is-primary is-large"> Subscribe </a>
-                    </div>
-                    <div className="content__gdprLegal">
-                      <a href="https://www.mailchimp.com/gdpr" target="_blank">
-                        {/* <img
-                          src="https://cdn-images.mailchimp.com/icons/mailchimp-gdpr.svg"
-                          alt="GDPR"
-                        /> */}
-                        <GatsbyImage fixed={data.gdpr.file.childImageSharp.fixed}
-                          alt="GDPR"/>
-                      </a>
-                      <p data-dojo-attach-point="gdprMcLegalContainer">
-                        <span>
-                          We use Mailchimp as our marketing platform. By
-                          clicking below to subscribe, you acknowledge that your
-                          information will be transferred to Mailchimp for
-                          processing.
-                          <a
-                            href="https://mailchimp.com/legal/"
-                            target="_blank"
-                          >
-                            &nbsp; Learn more about Mailchimp's privacy practices here.
-                          </a>
-                        </span>
-                      </p>
                     </div>
                   </Modal>
                 </div>
@@ -361,48 +358,10 @@ class IndexPage extends React.Component<{}, { modalState: boolean }> {
           </section>
         </div>
         {/* </Layout> */}
-
-
-        <StaticQuery
-      query={graphql`
-         query {
-        examplerun: file(relativePath: { eq: "examplemodelrun.png" }) {
-          childImageSharp {
-            # Specify a fixed image and fragment.
-            # The default width is 400 pixels
-            fixed(width: 340, height: 230) {
-              ...GatsbyImageSharpFixed
-            }
-          }
-        }
-        gdpr: file(relativePath: { eq: "https://cdn-images.mailchimp.com/icons/mailchimp-gdpr.svg" }) {
-          childImageSharp {
-            # Specify a fixed image and fragment.
-            # The default width is 400 pixels
-            fixed(width: 340, height: 230) {
-              ...GatsbyImageSharpFixed
-            }
-          }
-        }
-      }`
-    }   
-    render={(data: any) => (
-      <p/>
-    )}
-    />
-
-
       </>
-
-
     );
   }
-
 }
-
-
-
-
 
 class App extends React.Component<{}, { modalState: boolean }> {
   constructor(props) {
@@ -475,8 +434,6 @@ class App extends React.Component<{}, { modalState: boolean }> {
       </section>
     );
   }
-
-
 }
 
 // export default App;
@@ -513,7 +470,7 @@ export default IndexPage;
 //           }
 //         }
 //       }`
-//     }   
+//     }
 //     render={(data: any) => (
 //       <p/>
 //     )}
